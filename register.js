@@ -31,10 +31,9 @@
        // Signed in successfully
        const user = userCredential.user;
        alert("Login successful!");
-       console.log("User:", user);
 
        // Redirect to the main page or dashboard
-       window.location.href = "index.html";
+       window.location.href = "bet.html";
      })
      .catch((error) => {
        // Handle errors
