@@ -31,10 +31,9 @@ loginForm.addEventListener("submit", (e) => {
       // Signed up successfully
       const user = userCredential.user;
       alert("SignedUp successfuly!");
-      console.log("User:", user);
 
       // Redirect to the main page or dashboard
-      window.location.href = "login.html";
+      window.location.href = "index.html";
     })
     .catch((error) => {
       // Handle errors
