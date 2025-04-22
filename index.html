@@ -3,31 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login - Guess the Opp</title>
+  <title>Betting Game</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 </head>
 <body>
-  <div class="login-container">
+  <header class="header">
     <h1>
       <i class="fas fa-dice"></i>
       Guess the Opp
     </h1>
-    <form id="login-form">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required />
+    <div class="header-sections">
+      <div class="balance">
+        <i class="fas fa-wallet"></i>
+        Balance: Rs.<span id="balance">100</span>
       </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter your password" required />
+      <div class="actions">
+        <button id="bet-with-friend">
+          <i class="fas fa-user-friends"></i>
+          Bet with Friend
+        </button>
+        <button id="deposit">
+          <i class="fas fa-money-bill-wave"></i>
+          Deposit
+        </button>
+        <button id="withdraw">
+          <i class="fas fa-hand-holding-usd"></i>
+          Withdraw
+        </button>
       </div>
-      <button type="submit" id="login-button">Login</button>
-      <p style="font-size: 12px; color: gray; margin-top: 1rem;">
-        Don't have an account? <a href="register.html" style="color: #8a2be2; text-decoration: underline;">Sign up</a>
-      </p>
-    </form>
+    </div>
+  </header>
+  <div class="app">
+    <h1>Choose 5 numbers</h1>
+    <div class="betting-container">
+      <div class="betting-section">
+        <p>Enter your betting amount:</p>
+        <input type="number" id="betting-amount" placeholder="Enter amount" />
+        <p class="betting-limits">Minimum: Rs.10, Maximum: Rs.1000</p>
+        <button id="start-betting">Start Betting</button>
+        <p style="font-size: 12px; color: gray; margin-top: 1rem;">
+          • Select 5 numbers from below to place your bets.<br>
+          • Match 2 or more numbers to win based on predefined odds.<br>
+          • 2matched x1.5, 3matched x2, 4matched x3, 5matched x10.<br>
+          • Player loses if they match less than 2 numbers.<br>
+        </p>
+      </div>
+      <div class="grid disabled">
+        <!-- Numbers 1-20 will be dynamically generated here -->
+      </div>
+    </div>
+    <div class="footer">
+      <button id="submit-button" disabled>Confirm</button>
+    </div>
   </div>
-  <script type="module" src="register.js"></script>
+  <section id="bet-with-friend-section" class="hidden">
+    <h2>Bet with Friend</h2>
+    <p>Invite your friend to play and place your bets!</p>
+    <button id="back-from-bet">Back</button>
+  </section>
+  <section id="deposit-section" class="hidden">
+    <h2>Deposit</h2>
+    <p>Enter the amount you want to deposit:</p>
+    <input type="number" id="deposit-amount" placeholder="Amount" />
+    <p>Select your payment method:</p>
+    <select id="deposit-method">
+      <option value="esewa">eSewa</option>
+      <option value="khalti">Khalti</option>
+    </select>
+    <p>Enter your wallet name:</p>
+    <input type="text" id="deposit-wallet-name" placeholder="Wallet Name" required />
+    <p>Enter your wallet number:</p>
+    <input type="text" id="deposit-wallet-number" placeholder="Wallet Number" required />
+    <p>Enter your transaction code:</p>
+    <input type="text" id="transaction-code" placeholder="Transaction Code" required />
+    <p style="font-size: 12px; color: gray; text-align: left;">
+      • Ensure the transaction code is correct.<br>
+      • The transaction code can be found in your selected payment method's transaction slip.<br>
+      • Contact support if you face any issues.
+    </p>
+    <button id="confirm-deposit">Confirm</button>
+    <button id="back-from-deposit">Back</button>
+  </section>
+  <section id="withdraw-section" class="hidden">
+    <h2>Withdraw</h2>
+    <p>Enter the amount you want to withdraw:</p>
+    <input type="number" id="withdraw-amount" placeholder="Amount" />
+    <p>Select your withdrawal method:</p>
+    <select id="withdraw-method">
+      <option value="esewa">eSewa</option>
+      <option value="khalti">Khalti</option>
+    </select>
+    <p>Enter your wallet name:</p>
+    <input type="text" id="withdraw-wallet-name" placeholder="Wallet Name" required />
+    <p>Enter your wallet number:</p>
+    <input type="text" id="withdraw-wallet-number" placeholder="Wallet Number" required />
+    <button id="confirm-withdraw">Confirm</button>
+    <button id="back-from-withdraw">Back</button>
+  </section>
+  <footer class="footer">
+    <p style="font-size: 12px; color: gray; text-align: center; margin-top: 2rem;">
+      © 2023 Guess the Opp. All rights reserved. | <a href="#" style="color: gray; text-decoration: underline;">Terms & Conditions</a> | <a href="#" style="color: gray; text-decoration: underline;">Privacy Policy</a>
+    </p>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
