@@ -26,12 +26,15 @@
       <p style="font-size: 12px; color: gray; margin-top: 1rem;">
         Don't have an account? <a href="register.html" style="color: #8a2be2; text-decoration: underline;">Sign up</a>
       </p>
+      <p style="font-size: 12px; color: gray; margin-top: 1rem;">
+        <a href="reset-password.html" id="forgot-password" style="color: #8a2be2; text-decoration: underline;">Forgot Password?</a>
+      </p>
     </form>
   </div>
   <script type="module">
     // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+  import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -47,6 +50,27 @@
  const app = initializeApp(firebaseConfig);
  const auth = getAuth(app);
 
+ // Function to show popup message
+ function showPopupMessage(message, color) {
+   const popup = document.createElement("div");
+   popup.textContent = message;
+   popup.style.position = "fixed";
+   popup.style.top = "10px";
+   popup.style.right = "10px";
+   popup.style.backgroundColor = color;
+   popup.style.color = "#fff";
+   popup.style.padding = "10px 20px";
+   popup.style.borderRadius = "5px";
+   popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.2)";
+   popup.style.zIndex = "1000";
+   popup.style.fontSize = "14px";
+   document.body.appendChild(popup);
+
+   setTimeout(() => {
+     popup.remove();
+   }, 3000); // Remove popup after 3 seconds
+ }
+
  // Handle login form submission
  const loginForm = document.getElementById("login-form");
  loginForm.addEventListener("submit", (e) => {
@@ -59,19 +83,17 @@
      .then((userCredential) => {
        // Signed in successfully
        const user = userCredential.user;
-       alert("Login successful!");
+       showPopupMessage("Login successful!", "#28a745"); // Green for success
 
        // Redirect to the main page or dashboard
-       window.location.href = "bet.html";
+       window.location.href = "index.html";
      })
      .catch((error) => {
        // Handle errors
-       const errorCode = error.code;
-       const errorMessage = error.message;
-       alert(`Error: ${errorMessage}`);
-       console.error("Error Code:", errorCode, "Message:", errorMessage);
+       showPopupMessage("Incorrect email or password", "#dc3545"); // Red for error
      });
  });
+
   </script>
 </body>
 </html>
