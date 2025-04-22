@@ -21,6 +21,13 @@
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Enter your password" required />
+        <ul id="password-rules" style="font-size: 12px; color: gray; margin-top: 0.5rem; padding-left: 1.5rem;">
+          <li id="rule-uppercase">• At least one uppercase letter</li>
+          <li id="rule-lowercase">• At least one lowercase letter</li>
+          <li id="rule-number">• At least one number</li>
+          <li id="rule-special">• At least one special character</li>
+          <li id="rule-length">• At least 6 characters long</li>
+        </ul>
       </div>
       <button type="submit" id="login-button">Sign Up</button>
       <p style="font-size: 12px; color: gray; margin-top: 1rem;">
@@ -46,6 +53,80 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Function to show popup message
+    function showPopupMessage(message, color) {
+      const popup = document.createElement("div");
+      popup.textContent = message;
+      popup.style.position = "fixed";
+      popup.style.top = "10px";
+      popup.style.right = "10px";
+      popup.style.backgroundColor = color;
+      popup.style.color = "#fff";
+      popup.style.padding = "10px 20px";
+      popup.style.borderRadius = "5px";
+      popup.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.2)";
+      popup.style.zIndex = "1000";
+      popup.style.fontSize = "14px";
+      document.body.appendChild(popup);
+
+      setTimeout(() => {
+        popup.remove();
+      }, 3000); // Remove popup after 3 seconds
+    }
+
+    // Password validation
+    const passwordInput = document.getElementById("password");
+    const ruleUppercase = document.getElementById("rule-uppercase");
+    const ruleLowercase = document.getElementById("rule-lowercase");
+    const ruleNumber = document.getElementById("rule-number");
+    const ruleSpecial = document.getElementById("rule-special");
+    const ruleLength = document.getElementById("rule-length");
+
+    passwordInput.addEventListener("input", () => {
+      const password = passwordInput.value;
+
+      // Check each condition and toggle styles
+      if (/[A-Z]/.test(password)) {
+        ruleUppercase.style.color = "green";
+        ruleUppercase.textContent = "✔ At least one uppercase letter";
+      } else {
+        ruleUppercase.style.color = "gray";
+        ruleUppercase.textContent = "• At least one uppercase letter";
+      }
+
+      if (/[a-z]/.test(password)) {
+        ruleLowercase.style.color = "green";
+        ruleLowercase.textContent = "✔ At least one lowercase letter";
+      } else {
+        ruleLowercase.style.color = "gray";
+        ruleLowercase.textContent = "• At least one lowercase letter";
+      }
+
+      if (/\d/.test(password)) {
+        ruleNumber.style.color = "green";
+        ruleNumber.textContent = "✔ At least one number";
+      } else {
+        ruleNumber.style.color = "gray";
+        ruleNumber.textContent = "• At least one number";
+      }
+
+      if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+        ruleSpecial.style.color = "green";
+        ruleSpecial.textContent = "✔ At least one special character";
+      } else {
+        ruleSpecial.style.color = "gray";
+        ruleSpecial.textContent = "• At least one special character";
+      }
+
+      if (password.length >= 6) {
+        ruleLength.style.color = "green";
+        ruleLength.textContent = "✔ At least 6 characters long";
+      } else {
+        ruleLength.style.color = "gray";
+        ruleLength.textContent = "• At least 6 characters long";
+      }
+    });
+
     // Handle form submission
     const loginForm = document.getElementById("login-form");
     loginForm.addEventListener("submit", (e) => {
@@ -57,14 +138,14 @@
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          alert("Sign-up successful!");
+          showPopupMessage("Sign-up successful!", "#28a745"); // Green for success
 
           // Redirect to login page
-          window.location.href = "index.html";
+          window.location.href = "index.html.html";
         })
         .catch((error) => {
-          console.error("Error Code:", error.code, "Message:", error.message);
-          alert(`Error: ${error.message}`);
+          showPopupMessage("Unable to sign up. Please try again.", "#dc3545"); // Red for error
+          console.error("Error Code:", error.code, "Message:", error.message); // Log the actual error for debugging
         });
     });
   </script>
