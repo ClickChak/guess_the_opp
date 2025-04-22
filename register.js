@@ -1,19 +1,17 @@
- // Import the functions you need from the SDKs you need
- import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
- import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
- import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
- // Your web app's Firebase configuration
- // For Firebase JS SDK v7.20.0 and later, measurementId is optional
- const firebaseConfig = {
-   apiKey: "AIzaSyBLCUg15WyLg4bqZUfgkwOnJwP8ufB7hRI",
-   authDomain: "guesstheopp.firebaseapp.com",
-   projectId: "guesstheopp",
-   storageBucket: "guesstheopp.firebasestorage.app",
-   messagingSenderId: "40302006389",
-   appId: "1:40302006389:web:c3df0449d7afa3a9b6a83c",
-   measurementId: "G-3DLMB327YK"
- };
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAFtvUCuP3uh4FgxRFE7jbE0Ek4xCJ3cEc",
+    authDomain: "guesstheopp-86dcb.firebaseapp.com",
+    projectId: "guesstheopp-86dcb",
+    storageBucket: "guesstheopp-86dcb.firebasestorage.app",
+    messagingSenderId: "617740240709",
+    appId: "1:617740240709:web:a2af9d88b66384523e202c"
+  };
 
  // Initialize Firebase
  const app = initializeApp(firebaseConfig);
