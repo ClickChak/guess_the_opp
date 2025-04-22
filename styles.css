@@ -1,0 +1,532 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif; /* Modern font */
+  font-size: 16px; /* Base font size for scaling */
+  background: linear-gradient(135deg, #1e1e2f, #2a2a3f); /* Gradient background */
+  color: #ffffff; /* White text */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.container {
+  max-width: 1200px; /* Fixed container width */
+  margin: 0 auto; /* Center the container */
+  padding: 0 20px; /* Add horizontal padding */
+}
+
+.app {
+  text-align: center;
+  padding: 2rem; /* Use relative units for padding */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns */
+  grid-template-rows: repeat(5, auto); /* 5 rows */
+  gap: 1rem; /* Use relative units for gap */
+  margin: 2rem auto; /* Center the grid */
+  max-width: 400px; /* Fixed grid width */
+  animation: fadeIn 1s ease-in-out; /* Fade-in animation for the grid */
+}
+
+.grid-item {
+  background: linear-gradient(135deg, #3a3a4f, #4a4a6f); /* Gradient background */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 1.5rem; /* Use relative units for padding */
+  font-size: 1rem; /* Use relative units for font size */
+  cursor: pointer;
+  border-radius: 0.5rem; /* Use relative units for border radius */
+  transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.grid-item.selected {
+  background: linear-gradient(135deg, #6a0dad, #8a2be2); /* Purple gradient for selected items */
+  transform: scale(1.1); /* Slight zoom effect */
+  box-shadow: 0 0.5rem 1rem rgba(106, 13, 173, 0.5); /* Glow effect for selected items */
+}
+
+.grid-item:hover {
+  background: linear-gradient(135deg, #4a4a6f, #5a5a7f); /* Hover effect */
+  transform: scale(1.05); /* Slight zoom effect */
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+.footer {
+  margin-top: 2rem; /* Use relative units for margin */
+  font-size: 1rem; /* Use relative units for font size */
+}
+
+button:disabled {
+  background-color: #555; /* Disabled button gray */
+  cursor: not-allowed;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of elements */
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem; /* Use relative units for padding */
+  background: linear-gradient(135deg, #2a2a3f, #3a3a4f); /* Gradient background for header */
+  border-bottom: 0.125rem solid #6a0dad; /* Use relative units for border */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%; /* Ensure header fits within the screen */
+  box-sizing: border-box; /* Include padding in width calculation */
+  gap: 1rem; /* Add spacing between wrapped elements */
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 1.5rem; /* Use relative units for font size */
+  color: #ffffff; /* White text for title */
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* Text shadow */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Use relative units for gap */
+  flex: 1 1 100%; /* Ensure the title takes full width on small screens */
+  text-align: center; /* Center the title on small screens */
+}
+
+.header h1 img {
+  width: 2rem; /* Use relative units for size */
+  height: 2rem; /* Use relative units for size */
+}
+
+.header h1 i {
+  font-size: 2rem; /* Use relative units for icon size */
+}
+
+.header-sections {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of sections */
+  justify-content: center; /* Center sections on small screens */
+  align-items: center;
+  gap: 1rem; /* Use relative units for spacing between sections */
+  flex: 1 1 100%; /* Ensure sections take full width on small screens */
+}
+
+.balance {
+  font-size: 1rem; /* Use relative units for font size */
+  color: #ffffff; /* White text for balance */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Use relative units for gap */
+  background-color: #3a3a4f; /* Gray background */
+  padding: 0.5rem 1rem; /* Add padding for better spacing */
+  border-radius: 0.5rem; /* Rounded corners */
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping of buttons */
+  justify-content: center; /* Center buttons on small screens */
+  align-items: center;
+  gap: 1rem; /* Use relative units for spacing between buttons */
+}
+
+.actions button {
+  background: linear-gradient(135deg, #6a0dad, #8a2be2); /* Gradient background for buttons */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 0.75rem 1.25rem; /* Use relative units for padding */
+  font-size: 1rem; /* Use relative units for font size */
+  cursor: pointer;
+  border-radius: 0.5rem; /* Use relative units for border radius */
+  transition: transform 0.3s, background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Use relative units for gap */
+}
+
+.actions button i {
+  font-size: 1rem; /* Use relative units for icon size */
+}
+
+.actions button:hover {
+  background: linear-gradient(135deg, #4a4a6f, #5a5a7f); /* Hover effect */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.hidden {
+  display: none;
+}
+
+section {
+  text-align: center;
+  margin: 2rem auto;
+  padding: 2rem; /* Use relative units for padding */
+  max-width: 30rem; /* Fixed section width */
+  background: linear-gradient(135deg, #2a2a3f, #3a3a4f); /* Gradient background */
+  border-radius: 0.5rem; /* Use relative units for border radius */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  color: #ffffff; /* White text */
+}
+
+section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem; /* Use relative units for font size */
+  color: #6a0dad; /* Purple for section titles */
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5); /* Text shadow */
+}
+
+section p {
+  margin-bottom: 1rem;
+  font-size: 1rem; /* Use relative units for font size */
+}
+
+section input, section select {
+  width: 80%;
+  padding: 0.75rem; /* Use relative units for padding */
+  margin-bottom: 1rem;
+  border: 0.125rem solid #6a0dad; /* Use relative units for border */
+  border-radius: 0.5rem; /* Use relative units for border radius */
+  background-color: #3a3a4f; /* Gray background */
+  color: #ffffff; /* White text */
+  font-size: 1rem; /* Use relative units for font size */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+section input:focus, section select:focus {
+  outline: none;
+  border-color: #8a2be2; /* Brighter purple on focus */
+  box-shadow: 0 0.25rem 0.5rem rgba(106, 13, 173, 0.5); /* Glow effect */
+}
+
+section button {
+  background: linear-gradient(135deg, #6a0dad, #8a2be2); /* Gradient background for buttons */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 0.75rem 1rem; /* Use relative units for padding */
+  font-size: 1rem; /* Use relative units for font size */
+  cursor: pointer;
+  border-radius: 0.5rem; /* Use relative units for border radius */
+  transition: transform 0.3s, background-color 0.3s;
+  margin: 0.5rem;
+}
+
+section button:hover {
+  background: linear-gradient(135deg, #4a4a6f, #5a5a7f); /* Hover effect */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+#submit-button {
+  background: linear-gradient(135deg, #6a0dad, #8a2be2); /* Gradient background */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 0.75rem 1.25rem; /* Use relative units for padding */
+  font-size: 1rem; /* Use relative units for font size */
+  cursor: pointer;
+  border-radius: 0.5rem; /* Use relative units for border radius */
+  transition: transform 0.3s, background-color 0.3s;
+  display: block; /* Ensure the button takes full width */
+  margin: 1rem auto; /* Center the button horizontally */
+}
+
+#submit-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4a4a6f, #5a5a7f); /* Hover effect */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+#submit-button:disabled {
+  background-color: #555; /* Gray background for disabled state */
+  cursor: not-allowed;
+}
+
+section input.payment-field {
+  transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+section input.payment-field.esewa {
+  background-color: #d4f4dd; /* Light green for eSewa */
+}
+
+section input.payment-field.khalti {
+  background-color: #e8d4f4; /* Light purple for Khalti */
+}
+
+.betting-section {
+  text-align: center;
+  margin: 2rem auto; /* Center the section */
+}
+
+#betting-amount {
+  width: 40%; /* Shorter width */
+  padding: 0.5rem;
+  border: 0.125rem solid #6a0dad;
+  border-radius: 0.5rem;
+  background-color: #3a3a4f;
+  color: #fff;
+}
+
+#betting-amount:focus {
+  border-color: #8a2be2;
+  box-shadow: 0 0.25rem 0.5rem rgba(106, 13, 173, 0.5);
+}
+
+.betting-limits {
+  font-size: 0.875rem; /* Slightly smaller text */
+  color: #aaa; /* Light gray text */
+  margin-top: 0.5rem; /* Add spacing above the text */
+}
+
+#start-betting {
+  background: linear-gradient(135deg, #6a0dad, #8a2be2); /* Gradient background */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 0.75rem 1.25rem; /* Add padding for better usability */
+  font-size: 1rem; /* Use relative units for font size */
+  cursor: pointer;
+  border-radius: 0.5rem; /* Rounded corners */
+  transition: transform 0.3s, background-color 0.3s; /* Smooth transitions */
+}
+
+#start-betting:hover {
+  background: linear-gradient(135deg, #4a4a6f, #5a5a7f); /* Hover effect */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem); /* Slide up effect */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.input-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.input-container .multiplier-button {
+  padding: 10px;
+  border: none;
+  background-color: #5D2E8C; /* Purple background */
+  color: #ffffff; /* White text */
+  cursor: pointer;
+  font-size: 0.9rem;
+  flex: 0 0 auto;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.input-container .multiplier-button:hover {
+  background-color: #4a4a6f; /* Darker purple on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.input-container #betting-amount {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+  background-color: #f3f3f3; /* Light gray background */
+  color: #333; /* Neutral text color */
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup {
+  background: linear-gradient(135deg, #2a2a3f, #3a3a4f); /* Gradient background matching the theme */
+  color: #ffffff; /* White text */
+  padding: 2rem;
+  border-radius: 1rem; /* Rounded corners */
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5); /* Subtle shadow */
+  animation: fadeIn 0.5s ease-in-out; /* Smooth fade-in animation */
+}
+
+.popup.win {
+  border: 0.25rem solid #28a745; /* Green border for win */
+  box-shadow: 0 0.5rem 1rem rgba(40, 167, 69, 0.5); /* Green glow */
+  background: linear-gradient(135deg, #2a2a3f, #3a4f3a); /* Slight green tint for win */
+}
+
+.popup.lose {
+  border: 0.25rem solid #dc3545; /* Red border for loss */
+  box-shadow: 0 0.5rem 1rem rgba(220, 53, 69, 0.5); /* Red glow */
+  background: linear-gradient(135deg, #2a2a3f, #4f2a2a); /* Slight red tint for loss */
+}
+
+.popup-message {
+  font-size: 1rem; /* Standard font size for the message */
+  margin-bottom: 1.5rem;
+  color: #ffffff; /* White text */
+}
+
+.okay-button {
+  background: linear-gradient(135deg, #6a0dad, #8a2be2); /* Gradient background for the button */
+  color: #ffffff; /* White text */
+  border: none;
+  padding: 0.75rem 1.5rem; /* Add padding for better usability */
+  font-size: 1rem; /* Standard font size */
+  cursor: pointer;
+  border-radius: 0.5rem; /* Rounded corners */
+  transition: transform 0.3s, background-color 0.3s; /* Smooth transitions */
+}
+
+.okay-button:hover {
+  background: linear-gradient(135deg, #4a4a6f, #5a5a7f); /* Hover effect */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.betting-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem; /* Add spacing between input and grid */
+  margin: 2rem auto;
+  max-width: 800px; /* Limit the width of the container */
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #2a2a3f, #3a3a4f); /* Box background */
+  border-radius: 1rem; /* Rounded corners */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+.betting-container .betting-section {
+  flex: 1; /* Take up equal space */
+  text-align: left; /* Align content to the left */
+}
+
+.betting-container .grid {
+  flex: 1; /* Take up equal space */
+  text-align: center; /* Center the grid */
+}
+
+/* Apply side-by-side layout for larger screens */
+@media (min-width: 768px) {
+  .betting-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem; /* Add spacing between input and grid */
+    margin: 2rem auto;
+    max-width: 800px; /* Limit the width of the container */
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #2a2a3f, #3a3a4f); /* Box background */
+    border-radius: 1rem; /* Rounded corners */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3); /* Subtle shadow */
+  }
+
+  .betting-container .betting-section {
+    flex: 1; /* Take up equal space */
+    text-align: left; /* Align content to the left */
+  }
+
+  .betting-container .grid {
+    flex: 1; /* Take up equal space */
+    text-align: center; /* Center the grid */
+  }
+}
+
+/* Revert to stacked layout for smaller screens */
+@media (max-width: 767px) {
+  .betting-container {
+    display: block;
+    margin: 1rem auto;
+    padding: 1rem;
+    background: none; /* Remove box background */
+    box-shadow: none; /* Remove shadow */
+  }
+
+  .betting-container .betting-section,
+  .betting-container .grid {
+    margin-bottom: 1rem; /* Add spacing between sections */
+  }
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 5rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #2a2a3f, #3a3a4f); /* Matching theme */
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #ffffff;
+}
+
+.login-container h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  text-shadow: 0.125rem 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
+}
+
+.login-container .form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.login-container label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #aaa;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 0.125rem solid #6a0dad;
+  border-radius: 0.5rem;
+  background-color: #3a3a4f;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-container input:focus {
+  outline: none;
+  border-color: #8a2be2;
+  box-shadow: 0 0.25rem 0.5rem rgba(106, 13, 173, 0.5);
+}
+
+#login-button {
+  background: linear-gradient(135deg, #6a0dad, #8a2be2);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+#login-button:hover {
+  background: linear-gradient(135deg, #4a4a6f, #5a5a7f);
+  transform: scale(1.05);
+}
+
+.login-container p {
+  font-size: 0.875rem;
+  color: #aaa;
+  margin-top: 1rem;
+}
+
+.login-container p a {
+  color: #8a2be2;
+  text-decoration: underline;
+}
